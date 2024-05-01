@@ -18,15 +18,21 @@ public class MongoDBConnection {
 	String collectionName;
 	
 	static final String MONGOURL = "localhost";
+	static final int MONGOPORT = 27017;
 	
 	public MongoDBConnection() {
-		mongoClient = new MongoClient(MONGOURL, 27017);
+		mongoClient = new MongoClient(MONGOURL, MONGOPORT);
 	}
 	
 	public MongoDBConnection(String dbname) {
-		mongoClient = new MongoClient(MONGOURL, 27017);
+		mongoClient = new MongoClient(MONGOURL, MONGOPORT);
 		mongoDB = mongoClient.getDatabase(dbname);
 		System.out.println("connected!");
+	}
+	
+	public MongoDBConnection(String dbname, String col) {
+		this(dbname);
+		this.collectionName = col;
 	}
 	
 	public void setCol(String col) {
