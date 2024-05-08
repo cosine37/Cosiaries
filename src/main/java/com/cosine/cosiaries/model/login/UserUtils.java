@@ -1,6 +1,7 @@
 package com.cosine.cosiaries.model.login;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
@@ -83,6 +84,23 @@ public class UserUtils {
 	    return text;
 	}
 	
+	public static void generateKVP() throws Exception {
+		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+		generator.initialize(2048);
+		KeyPair pair = generator.generateKeyPair();
+		
+		PrivateKey privateKey = pair.getPrivate();
+		PublicKey publicKey = pair.getPublic();
+		
+		try (FileOutputStream fos = new FileOutputStream("public.key")) {
+		    fos.write(publicKey.getEncoded());
+		}
+		
+		try (FileOutputStream fos = new FileOutputStream("private.key")) {
+		    fos.write(privateKey.getEncoded());
+		}
+	}
+	
 	/**
 	 * User related
 	 */
@@ -103,6 +121,12 @@ public class UserUtils {
 	public static final int SUCCESSFUL = 201;
 	public static final int SAMEUSER = 406;
 	
+	/***
+	 * Create a user in DB if applicable
+	 * 
+	 * @param u: the user containing username, password and emails
+	 * @return SAMEUSER: if the user with the same name exists. SUCCESSFUL: if the user is successfully created in DB.
+	 */
 	public static int createUser(User u) {
 		int result = FAILURE;
 		if (containsUser(u.getUsername())) {
@@ -113,6 +137,10 @@ public class UserUtils {
 			result = SUCCESSFUL;
 		}
 		return result;
+	}
+	
+	public static int createUser(String username, String password, String email) {
+		return createUser(new User(username, password, email));
 	}
 	
 	public static boolean validate(String username, String password) throws Exception {
@@ -126,6 +154,7 @@ public class UserUtils {
 				Binary b = (Binary) doc.get("encrypted");
 				byte[] bytes = b.getData();
 				String decrypted = decrypt(bytes);
+				System.out.println(decrypted);
 				if (decrypted.contentEquals(password)) {
 					f = true;
 				} else {

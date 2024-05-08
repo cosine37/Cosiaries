@@ -9,7 +9,7 @@ public class IndexController {
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String empty() {
-		return "redirect:index";
+		return "redirect:login";
 	}
 	
 	@RequestMapping(value="/index", method = RequestMethod.GET)

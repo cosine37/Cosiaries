@@ -1,15 +1,5 @@
 package com.cosine.cosiaries.model.login;
 
-import java.io.FileOutputStream;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-
 import org.bson.Document;
 import org.bson.types.Binary;
 

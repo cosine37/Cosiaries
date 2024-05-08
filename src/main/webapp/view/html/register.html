@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<script src="/js/lib/angular.min.js"></script>
+<script src="/js/app/registerController.js"></script>
+<body ng-app="registerApp" ng-controller="registerCtrl">
+	Register
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" name="username" ng-model="username"/></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="password" ng-model="password"/></td>
+		</tr>
+		<tr>
+			<td>Re-enter Password</td>
+			<td><input type="password" name="reenger" ng-model="reenter"/></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name="email" ng-model="email"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button ng-click="goto('login')">Back</button>
+				<button ng-click="register()">Register</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

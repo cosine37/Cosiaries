@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<script src="/js/lib/angular.min.js"></script>
+<script src="/js/app/loginController.js"></script>
+<body ng-app="loginApp" ng-controller="loginCtrl">
+	Welcome to Cosiaries
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" name="username" ng-model="username"/></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="password" ng-model="password"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button ng-click="login()">Login</button>
+				<button ng-click="goto('register')">Register</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
