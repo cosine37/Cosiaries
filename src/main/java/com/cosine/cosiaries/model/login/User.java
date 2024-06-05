@@ -63,7 +63,6 @@ public class User {
 		Document doc = new Document();
 		doc.append("username", username);
 		doc.append("email", email);
-		
 		doc.append("encrypted", encrypted);
 		return doc;
 	}

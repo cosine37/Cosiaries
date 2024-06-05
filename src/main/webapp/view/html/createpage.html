@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<script src="/js/lib/angular.min.js"></script>
+<script src="/js/app/createPageController.js"></script>
+<body ng-app="loginApp" ng-controller="loginCtrl">
+	<table>
+		<tr>
+			<td><h1>Title: </h1></td>
+			<td><input type="text" style="height:30px; font-size:30px" ng-model="title"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea rows="30" cols="50" ng-model="content"></textarea>
+			</td>
+		</tr>
+	</table>
+	<button ng-click="create()">Submit</button>
+</body>
+</html>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cosine.cosiaries.model.login.UserUtils;
+import com.cosine.cosiaries.utils.StringEntity;
+
 
 @Controller
 public class LoginController {
@@ -23,6 +25,13 @@ public class LoginController {
 	@RequestMapping (value="/register", method = RequestMethod.GET)
 	public String registerPage() {
 		return "register";
+	}
+	
+	@RequestMapping (value="/whoami", method = RequestMethod.GET)
+	public ResponseEntity<StringEntity> whoami(HttpServletRequest request){
+		HttpSession session = request.getSession(true);
+		String username = (String) session.getAttribute("username");
+		return new ResponseEntity<>(new StringEntity(username), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)

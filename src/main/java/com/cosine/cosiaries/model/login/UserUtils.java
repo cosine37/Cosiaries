@@ -154,7 +154,7 @@ public class UserUtils {
 				Binary b = (Binary) doc.get("encrypted");
 				byte[] bytes = b.getData();
 				String decrypted = decrypt(bytes);
-				System.out.println(decrypted);
+				//System.out.println(decrypted);
 				if (decrypted.contentEquals(password)) {
 					f = true;
 				} else {
@@ -163,6 +163,18 @@ public class UserUtils {
 			}
 		}
 		return f;
+	}
+	
+	public static User getUserByName(String username) {
+		MongoDBConnection dbutil = new MongoDBConnection(DBNAME, COLNAME);
+		Document doc = dbutil.read(USERNAMEATTR, username);
+		if (doc == null) {
+			return null;
+		} else {
+			User user = new User();
+			user.setFromDoc(doc);
+			return user;
+		}
 	}
 	
 }
